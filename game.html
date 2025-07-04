@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe - Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Walter+Turncoat&family=Wallpoet&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+
+  <div class="scoreboard">
+    <div class="score o-score">
+  <div class="neon-o">O</div>
+  <p><span id="oWins">0</span> Wins</p>
+</div>
+<div class="score x-score">
+  <div class="neon-x">X</div>
+  <p><span id="xWins">0</span> Wins</p> <!-- 'Lose' can be interpreted from opponent's wins -->
+</div>
+<div class="score draw-score">
+  <div class="neon-dash">-</div>
+  <p><span id="draws">0</span> Draw</p>
+</div>
+
+  </div>
+
+  <div class="game-board">
+    <div class="cell" id="0"></div>
+    <div class="cell" id="1"></div>
+    <div class="cell" id="2"></div>
+    <div class="cell" id="3"></div>
+    <div class="cell" id="4"></div>
+    <div class="cell" id="5"></div>
+    <div class="cell" id="6"></div>
+    <div class="cell" id="7"></div>
+    <div class="cell" id="8"></div>
+  </div>
+
+  <button class="back-button" onclick="goBack()">← Back</button>
+
+  <script>
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    const mode = new URLSearchParams(window.location.search).get("mode");
+  console.log("Game mode:", mode);
+
+    if (mode === "ai") {
+  const script = document.createElement('script');
+  script.src = "game-ai.js";
+  document.body.appendChild(script);
+}
+
+
+let currentPlayer = "X";
+let board = ["", "", "", "", "", "", "", "", ""];
+
+let xWins = 0;
+let oWins = 0;
+let draws = 0;
+
+const cells = document.querySelectorAll(".cell");
+const xWinsText = document.getElementById("xWins");
+const oWinsText = document.getElementById("oWins");
+const drawsText = document.getElementById("draws");
+
+
+if (mode === "human") {
+cells.forEach(cell => {
+  cell.addEventListener("click", () => {
+    const index = cell.id;
+    if (board[index] === "") {
+      board[index] = currentPlayer;
+      cell.textContent = currentPlayer;
+      cell.classList.add(currentPlayer === "X" ? "neon-x" : "neon-o");
+
+      if (checkWinner(currentPlayer)) {
+        if (currentPlayer === "X") {
+          xWins++;
+          xWinsText.textContent = xWins;
+        } else {
+          oWins++;
+          oWinsText.textContent = oWins;
+        }
+        setTimeout(resetBoard, 1000);
+      } else if (board.every(cell => cell !== "")) {
+        draws++;
+        drawsText.textContent = draws;
+        setTimeout(resetBoard, 1000);
+      } else {
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+      }
+    }
+  });
+});
+}
+
+function checkWinner(player) {
+  const winCombos = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // cols
+    [0, 4, 8], [2, 4, 6]             // diagonals
+  ];
+  return winCombos.some(combo =>
+    combo.every(index => board[index] === player)
+  );
+}
+
+function resetBoard() {
+  board = ["", "", "", "", "", "", "", "", ""];
+  cells.forEach(cell => {
+    cell.textContent = "";
+    cell.classList.remove("neon-x", "neon-o");
+  });
+  currentPlayer = "X";
+}
+  </script>
+
+</body>
+</html>

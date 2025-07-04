@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe - Landing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Walter+Turncoat&family=Wallpoet&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Logo -->
+    <img src="Logo.png" alt="T3 Logo" class="logo" />
+
+    <!-- X vs O -->
+    <div class="vs-text">
+      <span class="neon-x">X</span>
+      <span class="vs">vs</span>
+      <span class="neon-o">O</span>
+    </div>
+
+    <!-- Tagline -->
+    <div class="tagline">- The Battle Begins</div>
+
+    <!-- Play with options -->
+    <div class="play-section">
+      <p class="play-text">PLAY WITH</p>
+      <div class="buttons">
+        <button class="btn" onclick="startGame('human')">Human</button>
+        <button class="btn" onclick="startGame('ai')">Machine</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function startGame(mode) {
+      window.location.href = `game.html?mode=${mode}`;
+    }
+  </script>
+
+</body>
+</html>

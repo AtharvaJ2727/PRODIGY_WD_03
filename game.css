@@ -1,0 +1,93 @@
+/* Reset and Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111;
+  color: white;
+  font-family: 'Wallpoet', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 10px;
+  gap: 30px;
+}
+
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.score {
+  text-align: center;
+}
+
+.score p {
+  font-size: 1.2rem;
+}
+
+/* Neon Symbols */
+.neon-o {
+  font-family: 'Walter Turncoat', cursive;
+  font-size: 3rem;
+  color: #ffff66;
+  text-shadow: 0 0 10px #ffff66, 0 0 20px #ffff66;
+}
+
+.neon-x {
+  font-family: 'Walter Turncoat', cursive;
+  font-size: 3rem;
+  color: #00f6ff;
+  text-shadow: 0 0 10px #00f6ff, 0 0 20px #00f6ff;
+}
+
+.neon-dash {
+  font-size: 3rem;
+  color: #ff5555;
+  text-shadow: 0 0 10px #ff5555, 0 0 20px #ff5555;
+}
+
+/* Game Board */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: repeat(3, 80px);
+  gap: 8px;
+}
+
+.cell {
+  width: 80px;
+  height: 80px;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-family: 'Walter Turncoat', cursive;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Back Button */
+.back-button {
+  margin-top: 30px;
+  background-color: white;
+  color: black;
+  font-size: 1.2rem;
+  font-family: 'Wallpoet', sans-serif;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px white;
+}
